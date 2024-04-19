@@ -4,20 +4,27 @@ using UnityEngine;
 
 public class EnemyMotion : MonoBehaviour
 {
-    private float _speed;
+    private int _speed;
     private int _maxSpeed = 15;
     private int _direction = 5;
-    private Vector3 _targetPoint;
+    private int _rotation = 1; //180
+
+    private Vector3 _targetPointForward;
+    private Vector3 _targetPointBackward;
 
     private void Start()
     {
         _speed = GetRandomValue(_maxSpeed);
-        _targetPoint = new Vector3(0, 0, _direction);
+        _targetPointForward = new Vector3(transform.position.x, transform.position.y, transform.position.z + _direction);
+        _targetPointBackward = new Vector3(transform.position.x, transform.position.y, transform.position.z - _direction);
     }
 
     private void Update()
     {
-        transform.localPosition = Vector3.MoveTowards(transform.localPosition, _targetPoint, Time.deltaTime * _speed);
+        if (transform.rotation.y == _rotation)
+            transform.position = Vector3.MoveTowards(transform.position, _targetPointBackward, Time.deltaTime * _speed);
+        else
+            transform.position = Vector3.MoveTowards(transform.position, _targetPointForward, Time.deltaTime * _speed);
     }
 
     private int GetRandomValue(int maxRandomValue, int minRandomValue = 0)

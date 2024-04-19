@@ -18,7 +18,9 @@ public class EnemySpawner : MonoBehaviour
     private void Spawn()
     {
         Transform randomSpawn = GetRandomSpawn(_spawnPoints);
-        Instantiate(_enemy, randomSpawn);
+        Instantiate(_enemy);
+        _enemy.transform.position = randomSpawn.position;
+        _enemy.transform.rotation = randomSpawn.rotation;
     }
 
     private IEnumerator GetSpawnEnemy(float delay)
