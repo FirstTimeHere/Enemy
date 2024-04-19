@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private Transform[] _spawnPoints;
-    [SerializeField] private GameObject _enemy;
+    [SerializeField] private Enemy _enemy;
 
     [SerializeField][Range(0.1f, 10f)] private float _delay;
     [SerializeField][Range(1, 100)] private int _numbersOfEnemy;
@@ -37,13 +38,7 @@ public class EnemySpawner : MonoBehaviour
 
     private Transform GetRandomSpawn(Transform[] _spawns)
     {
-        int randomValue = GetRandomValue(_spawns.Length);
+        int randomValue = Random.Range(0, _spawns.Length);
         return _spawns[randomValue];
-    }
-
-    private int GetRandomValue(int maxRandomValue, int minRandomValue = 0)
-    {
-        int randomValue = Random.Range(minRandomValue, maxRandomValue);
-        return randomValue;
     }
 }
