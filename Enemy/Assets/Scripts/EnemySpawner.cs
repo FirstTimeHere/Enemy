@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -21,7 +19,6 @@ public class EnemySpawner : MonoBehaviour
         Transform randomSpawn = GetRandomSpawn(_spawnPoints);
         Instantiate(_enemy);
         _enemy.transform.position = randomSpawn.position;
-        _enemy.transform.rotation = randomSpawn.rotation;
     }
 
     private IEnumerator GetSpawnEnemy(float delay)
@@ -36,9 +33,9 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    private Transform GetRandomSpawn(Transform[] _spawns)
+    private Transform GetRandomSpawn(Transform[] _spawnPoints)
     {
-        int randomValue = Random.Range(0, _spawns.Length);
-        return _spawns[randomValue];
+        int randomValue = Random.Range(0, _spawnPoints.Length);
+        return _spawnPoints[randomValue];
     }
 }

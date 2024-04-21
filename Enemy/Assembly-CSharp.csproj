@@ -61,7 +61,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\_Barking_Dog\Common Scripts\MouseLook.cs" />
-    <Compile Include="Assets\Scripts\EnemyMotion.cs" />
+    <Compile Include="Assets\Scripts\Enemy.cs" />
+    <Compile Include="Assets\Scripts\EnemyMover.cs" />
     <Compile Include="Assets\Scripts\EnemySpawner.cs" />
     <Compile Include="Assets\_Barking_Dog\Common Scripts\Turn_Move.cs" />
   </ItemGroup>
