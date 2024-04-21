@@ -9,6 +9,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField][Range(0.1f, 10f)] private float _delay;
     [SerializeField][Range(1, 100)] private int _numbersOfEnemy;
 
+    private Vector3 _targetPosition;
+
     private void Start()
     {
         StartCoroutine(GetSpawnEnemy(_delay));
@@ -17,8 +19,14 @@ public class EnemySpawner : MonoBehaviour
     private void Spawn()
     {
         Transform randomSpawn = GetRandomSpawn(_spawnPoints);
-        Instantiate(_enemy);
-        _enemy.transform.position = randomSpawn.position;
+        Instantiate(_enemy,randomSpawn.position,Quaternion.identity);
+        _targetPosition = randomSpawn.position;
+    }
+
+    public Vector3 GetTarget()
+    {
+        Vector3 target = _targetPosition;
+        return target;
     }
 
     private IEnumerator GetSpawnEnemy(float delay)
@@ -33,9 +41,9 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    private Transform GetRandomSpawn(Transform[] _spawnPoints)
+    private Transform GetRandomSpawn(Transform[] spawnPoints)
     {
-        int randomValue = Random.Range(0, _spawnPoints.Length);
-        return _spawnPoints[randomValue];
+        int randomValue = Random.Range(0, spawnPoints.Length);
+        return spawnPoints[randomValue];
     }
 }
