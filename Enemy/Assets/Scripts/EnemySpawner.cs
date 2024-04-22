@@ -9,8 +9,6 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField][Range(0.1f, 10f)] private float _delay;
     [SerializeField][Range(1, 100)] private int _numbersOfEnemy;
 
-    private Vector3 _targetPosition;
-
     private void Start()
     {
         StartCoroutine(GetSpawnEnemy(_delay));
@@ -19,14 +17,7 @@ public class EnemySpawner : MonoBehaviour
     private void Spawn()
     {
         Transform randomSpawn = GetRandomSpawn(_spawnPoints);
-        Instantiate(_enemy,randomSpawn.position,Quaternion.identity);
-        _targetPosition = randomSpawn.position;
-    }
-
-    public Vector3 GetTarget()
-    {
-        Vector3 target = _targetPosition;
-        return target;
+        Instantiate(_enemy, randomSpawn.position, Quaternion.identity);
     }
 
     private IEnumerator GetSpawnEnemy(float delay)

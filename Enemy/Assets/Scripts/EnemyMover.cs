@@ -1,28 +1,22 @@
 using UnityEngine;
 
+[RequireComponent (typeof(Target))]
+
 public class EnemyMover : MonoBehaviour
 {
-    private int _speed;
+    public int Speed {  get; private set; }
     private int _maxSpeed = 15;
 
-    private Vector3 _positionTarget;
-
-    private EnemySpawner _spawner;
+    private Target _target;
 
     private void Awake()
     {
-        _spawner = FindObjectOfType<EnemySpawner>();
-        _speed = Random.Range(0, _maxSpeed);
-    }
-
-    private void Start()
-    {
-        _positionTarget = _spawner.GetTarget();
+        _target = GetComponent<Target>();
+        Speed = Random.Range(0, _maxSpeed);
     }
 
     private void Update()
     {
-        _positionTarget.z += Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, _positionTarget, Time.deltaTime * _speed);
+        transform.position = Vector3.MoveTowards(transform.position, _target.transform.position, Time.deltaTime * Speed);
     }
 }
